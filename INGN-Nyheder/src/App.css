@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex&family=Righteous&display=swap');
+
+:root {
+  --font-primary: 'Roboto Flex', sans-serif;
+  --font-display: 'Righteous', sans-serif;
+
+  --color-bg: #F6F3F3;
+  --color-white: #FFFFFF;
+  --color-dark: #242424;
+  --color-accent: #C52525;
+}

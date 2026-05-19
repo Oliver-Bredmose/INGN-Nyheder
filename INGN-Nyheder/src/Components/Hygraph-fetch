@@ -1,0 +1,49 @@
+import { gql, GraphQLClient } from "graphql-request"
+
+const client = new GraphQLClient(import.meta.env.VITE_PUBLIC_URL)
+
+export const getSingleBlog = gql`
+  query{
+  blogs{
+  id
+    category
+    headline
+    textContent{
+      text 
+    }
+    image{
+      url
+    }
+    author  
+  	date
+  }
+  
+}
+`
+export async function fetchblogs() {
+  console.log(import.meta.env.VITE_PUBLIC_URL)
+  const data = await client.request(getSingleBlog)
+  return data
+}
+
+export const GetBlogById = gql`
+query GetBlogById($id: ID!) {
+  blog(where: { id: $id }) {
+    id
+    headline
+    category
+    author
+    date
+    textContent {
+      text
+    }
+    image {
+      url
+    }
+  }
+´
+
+export async function fetchBlogsById(id) {
+  const data = await client.request(GetBlogById, { id })
+  return data
+  }`
