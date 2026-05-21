@@ -1,17 +1,26 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { fetchblogs } from "../../Hygraph-fetch";
-import Navbar from "../../Navbar";
-import { Link } from "react-router-dom"
+import { fetchBlogById } from "../../Hygraph-fetch"
 
 function Artikel() {
+  const [blog, setBlog] = useState(null)
   const { id } = useParams()
-  console.log(id)
-
+  useEffect(() => { 
+    fetchBlogById(id).then((data) => {
+  setBlog(data.blog)
+})
+  }, [])
   return (
-    <div>
-      <h1>Artikel side</h1>
-    </div>
-  )
+  <div>
+    {blog && (
+      <div>
+        <h1>{blog.headline}</h1>
+        <p>{blog.author}</p>
+        <p>{blog.textContent.text}</p>
+        <img src={blog.image.url}/>
+      </div>
+    )}
+  </div>
+)
 }
 export default Artikel

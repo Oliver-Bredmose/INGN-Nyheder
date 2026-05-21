@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { fetchblogs } from "../../Hygraph-fetch";
 import Navbar from "../../Navbar";
 import { Link } from "react-router-dom"
+import styles from "./Hovedesite.module.scss"
 
 function Hovedesite() {
   const [blogs, setBlogs] = useState([])
@@ -19,19 +20,21 @@ function Hovedesite() {
   }, [])
 
   return (
-      <div>
-      <Navbar categories={categories} setActiveCategory={setActiveCategory}/>
-    {filteredBlogs.map((blog) => (
-  <div key={blog.headline}>
-    <p>{blog.category}</p>
-    <h1>{blog.headline}</h1>
-    <img src={blog.image.url}/>
-    <p>{blog.textContent.text}</p>
-    <Link to={`/artikel/${blog.id}`}>Læs mere</Link>
-    <p>{new Date(blog.date).toLocaleDateString("da-DK")}</p>
-    <p>{blog.author}</p>
-  </div>
-))}
+  <div>
+    <Navbar categories={categories} setActiveCategory={setActiveCategory}/>
+    <div className={styles.container}>
+      {filteredBlogs.map((blog) => (
+        <div key={blog.headline} className={styles.card}>
+          <p className={styles.category}>{blog.category}</p>
+          <h1 className={styles.headline}>{blog.headline}</h1>
+          <img className={styles.image} src={blog.image.url}/>
+          <p>{blog.textContent.text}</p>
+          <Link to={`/artikel/${blog.id}`}>Læs mere</Link>
+          <p>{new Date(blog.date).toLocaleDateString("da-DK")}</p>
+          <p>{blog.author}</p>
+        </div>
+      ))}
+    </div>
   </div>
 )
 }

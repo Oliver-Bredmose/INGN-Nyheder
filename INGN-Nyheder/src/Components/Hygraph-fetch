@@ -17,7 +17,7 @@ export const getSingleBlog = gql`
     author  
   	date
   }
-  
+
 }
 `
 export async function fetchblogs() {
@@ -41,9 +41,11 @@ query GetBlogById($id: ID!) {
       url
     }
   }
-´
+}
+`
 
-export async function fetchBlogsById(id) {
+
+export async function fetchBlogById(id) {
   const data = await client.request(GetBlogById, { id })
   return data
-  }`
+  }

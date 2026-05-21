@@ -1,0 +1,33 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 20px;
+}
+
+.category {
+  color: var(--color-accent);
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.headline {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+}
