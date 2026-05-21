@@ -11,6 +11,10 @@ function Navbar({ categories, setActiveCategory }) {
           </button>
         ))}
       </div>
+      <div className={styles.icons}>
+        <img src="/src/assets/images/icon_User_.png" alt="bruger"/>
+        <img src="/src/assets/images/icon_Bars_.png" alt="menu"/>
+      </div>
     </nav>
   )
 }
