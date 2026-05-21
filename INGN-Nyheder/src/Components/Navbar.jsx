@@ -1,4 +1,6 @@
 import styles from "./Navbar.module.scss"
+import userIcon from "../../assets/images/icon_User_.png"
+import barsIcon from "../../src/assets/images/"
 
 function Navbar({ categories, setActiveCategory }) {
   return (
@@ -12,8 +14,8 @@ function Navbar({ categories, setActiveCategory }) {
         ))}
       </div>
       <div className={styles.icons}>
-        <img src="/src/assets/images/icon_User_.png" alt="bruger"/>
-        <img src="/src/assets/images/icon_Bars_.png" alt="menu"/>
+        <img src={userIcon} alt="bruger"/>
+        <img src={barsIcon} alt="menu"/>
       </div>
     </nav>
   )
