@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { fetchblogs } from "../../Hygraph-fetch";
 import Navbar from "../../Navbar";
+import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom"
 import styles from "./Hovedesite.module.scss"
 
@@ -20,21 +21,26 @@ function Hovedesite() {
   }, [])
 
   return (
-  <div>
+      // den første div under filterblogs.map er fra ai 
+  <div className={styles.mainContainer}>
     <Navbar categories={categories} setActiveCategory={setActiveCategory}/>
     <div className={styles.container}>
-      {filteredBlogs.map((blog) => (
-        <div key={blog.headline} className={styles.card}>
+      {filteredBlogs.map((blog, index) => (
+          <div key={blog.headline} className={index === 0 ? styles.cardFeatured : styles.card}>
           <p className={styles.category}>{blog.category}</p>
           <h1 className={styles.headline}>{blog.headline}</h1>
-          <img className={styles.image} src={blog.image.url}/>
-          <p>{blog.textContent.text}</p>
-          <Link to={`/artikel/${blog.id}`}>Læs mere</Link>
-          <p>{new Date(blog.date).toLocaleDateString("da-DK")}</p>
-          <p>{blog.author}</p>
+          <span>
+            <img className={styles.image} src={blog.image.url}/>
+            <p>{new Date(blog.date).toLocaleDateString("da-DK")} - af {blog.author}</p>
+            <Link to={`/artikel/${blog.id}`}>Læs mere</Link>
+          </span>
+          <span>
+            <p>{blog.textContent.text.slice(0, 100)}...</p>
+          </span>
         </div>
       ))}
     </div>
+    <Footer/>
   </div>
 )
 }

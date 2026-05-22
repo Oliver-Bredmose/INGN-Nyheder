@@ -26,6 +26,7 @@ export async function fetchblogs() {
   return data
 }
 
+// Gør at man kommer ind på en ny side efter "læs mere"
 export const GetBlogById = gql`
 query GetBlogById($id: ID!) {
   blog(where: { id: $id }) {
@@ -43,7 +44,6 @@ query GetBlogById($id: ID!) {
   }
 }
 `
-
 
 export async function fetchBlogById(id) {
   const data = await client.request(GetBlogById, { id })
