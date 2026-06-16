@@ -7,16 +7,16 @@ function Artikel() {
   const { id } = useParams()
   useEffect(() => { 
     fetchBlogById(id).then((data) => {
-  setBlog(data.blog)
+  setBlog(data.myblog)
 })
   }, [])
   return (
   <div>
     {blog && (
       <div>
-        <h1>{blog.headline}</h1>
+        <h1>{blog.title}</h1>
         <p>{blog.author}</p>
-        <p>{blog.textContent.text}</p>
+        <div dangerouslySetInnerHTML={{ __html: blog.content.html }}/>
         <img src={blog.image.url}/>
       </div>
     )}

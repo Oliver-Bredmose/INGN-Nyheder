@@ -16,7 +16,7 @@ function Hovedesite() {
 
   useEffect(() => {
     fetchblogs().then((data) => {
-  setBlogs(data.blogs)
+  setBlogs(data.myblogs)
 })
   }, [])
 
@@ -26,16 +26,16 @@ function Hovedesite() {
     <Navbar categories={categories} setActiveCategory={setActiveCategory}/>
     <div className={styles.container}>
       {filteredBlogs.map((blog, index) => (
-          <div key={blog.headline} className={index === 0 ? styles.cardFeatured : styles.card}>
+          <div key={blog.title} className={index === 0 ? styles.cardFeatured : styles.card}>
           <p className={styles.category}>{blog.category}</p>
-          <h1 className={styles.headline}>{blog.headline}</h1>
+          <h1 className={styles.headline}>{blog.title}</h1>
           <span>
             <img className={styles.image} src={blog.image.url}/>
             <p>{new Date(blog.date).toLocaleDateString("da-DK")} - af {blog.author}</p>
             <Link to={`/artikel/${blog.id}`}>Læs mere</Link>
           </span>
           <span>
-            <p>{blog.textContent.text.slice(0, 100)}...</p>
+            <p>{blog.content.text.slice(0, 100)}...</p>
           </span>
         </div>
       ))}

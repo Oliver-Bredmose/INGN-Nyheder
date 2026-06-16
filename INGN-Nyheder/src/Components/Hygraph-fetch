@@ -4,12 +4,13 @@ const client = new GraphQLClient(import.meta.env.VITE_PUBLIC_URL)
 
 export const getSingleBlog = gql`
   query{
-  blogs{
+  myblogs{
   id
     category
-    headline
-    textContent{
+    title
+    content{
       text 
+      html
     }
     image{
       url
@@ -29,14 +30,15 @@ export async function fetchblogs() {
 // Gør at man kommer ind på en ny side efter "læs mere"
 export const GetBlogById = gql`
 query GetBlogById($id: ID!) {
-  blog(where: { id: $id }) {
+  myblog(where: { id: $id }) {
     id
-    headline
+    title
     category
     author
     date
-    textContent {
+    content {
       text
+      html
     }
     image {
       url
